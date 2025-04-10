@@ -1,0 +1,129 @@
+<html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Arritmias - Análisis Cardíaco</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#"><b>INICIO</b></a></li>
+            <li><a href="#"><b>PACIENTES ANALIZADOS</b></a></li>
+            <li><a href="#"><b>HERRAMIENTAS</b></a></li>
+            <li><a href="#"><b>DOCUMENTACIÓN</b></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="form-container">
+            <h1>DATOS MÉDICOS</h1>
+            <form id="heartForm">
+                <fieldset class="datos-personales">
+                    <legend>Información personal</legend>
+                    <div>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" required />
+
+                        <label for="edad">Edad:</label>
+                        <input type="number" id="edad" required />
+
+                        <label for="sexo">Sexo:</label>
+                        <select id="sexo">
+                            <option value="0">Hombre</option>
+                            <option value="1">Mujer</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Antecedentes médicos</legend>
+                    <div class="container-datos">
+                        <label for="chest">Chest Pain</label>
+                        <select id="chest">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+
+                        <label for="RestingBP">Resting BP</label>
+                        <input type="number" id="RestingBP" required />
+
+                        <label for="chol">Colesterol sérico (mg/dl):</label>
+                        <input type="number" id="chol" required />
+                    </div>
+
+                    <div class="container-datos">
+                        <label for="fbs">Azúcar en sangre en ayunas</label>
+                        <input type="number" id="fbs" min="0" max="1" required />
+
+                        <label for="restecg">Resultados del ECG</label>
+                        <input type="number" id="restecg" required />
+
+                        <label for="thalach">Frecuencia cardíaca máxima</label>
+                        <input type="number" id="thalach" required />
+                    </div>
+
+                    <div class="container-datos">
+                        <label for="exang">Angina inducida por ejercicio</label>
+                        <input type="number" id="exang" min="0" max="1" required />
+
+                        <label for="oldpeak">Oldpeak</label>
+                        <input type="number" step="0.1" id="oldpeak" required />
+
+                        <label for="slope">Pendiente del segmento ST</label>
+                        <input type="number" id="slope" required />
+                    </div>
+
+                    <div class="container-datos">
+                        <label for="ca">Vasos principales por fluoroscopía:</label>
+                        <input type="number" id="ca" min="0" max="3" required />
+
+                        <label for="thal">Talasemia</label>
+                        <input type="number" id="thal" min="0" max="2" required />
+                    </div>
+                </fieldset><br>
+
+                <input type="submit" value="ANALIZAR DATOS" />
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Arritmias</p>
+    </footer>
+
+    <script>
+        document.getElementById("heartForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const formData = {
+                age: parseInt(document.getElementById("edad").value),
+                sex: parseInt(document.getElementById("sexo").value),
+                cp: parseInt(document.getElementById("chest").value),
+                trestbps: parseInt(document.getElementById("RestingBP").value),
+                chol: parseInt(document.getElementById("chol").value),
+                fbs: parseInt(document.getElementById("fbs").value),
+                restecg: parseInt(document.getElementById("restecg").value),
+                thalach: parseInt(document.getElementById("thalach").value),
+                exang: parseInt(document.getElementById("exang").value),
+                oldpeak: parseFloat(document.getElementById("oldpeak").value),
+                slope: parseInt(document.getElementById("slope").value),
+                ca: parseInt(document.getElementById("ca").value),
+                thal: parseInt(document.getElementById("thal").value)
+            };
+
+            const response = await fetch("http://localhost:5000/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+            alert(result.message);
+        });
+    </script>
+</body>
+</html>
