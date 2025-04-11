@@ -4,17 +4,18 @@
     <meta charset="utf-8" />
     <title>Arritmias - Análisis Cardíaco</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#"><b>INICIO</b></a></li>
-            <li><a href="#"><b>PACIENTES ANALIZADOS</b></a></li>
-            <li><a href="#"><b>HERRAMIENTAS</b></a></li>
-            <li><a href="#"><b>DOCUMENTACIÓN</b></a></li>
-        </ul>
-    </nav>
+
+    <div id="navbar"></div>
+    <script>
+        fetch("../partials/navbar.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("navbar").innerHTML = data;
+          });
+      </script>
 
     <main>
         <div class="form-container">

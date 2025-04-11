@@ -11,11 +11,11 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #fff;
 }
 
 nav{
-    background-color: #000;
+    background-color: #000044;
     color: #fff;
     text-align: center;
     display: flex;
@@ -29,14 +29,13 @@ nav ul {
 }
 
 nav ul li {
-    padding: 15px 0;
+    padding: 25px 0;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 nav ul li:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: #00537f;
 }
 
 nav ul li a {    
@@ -47,7 +46,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #000;
+    color: #aab5bd;
 }
 
 main {
@@ -85,7 +84,7 @@ fieldset{
 
 fieldset legend {
     padding: 5px 10px;
-    background-color: #000;
+    background-color: #000444;
     color: #fff;
     border-radius: 15px;
 }
@@ -127,7 +126,7 @@ fieldset legend {
 
 form input[type="submit"] {
     width: 100%;
-    background-color: #000;
+    background-color: #002860;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -136,5 +135,5 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-    background-color: #333;
+    background-color: #63849e;
 }
