@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pacientes</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <div class="main-container">
+
+        <div id="navbar"></div>
+        <script>
+            fetch("../partials/navbar.html")
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById("navbar").innerHTML = data;
+                });
+        </script>
+
+        <h1 class="titulo">Lista de pacientes</h1>
+
+        <!-- Aplicamos la clase no-mostrar directamente -->
+        <table id="tabla-pacientes" class="no-mostrar">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Sexo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-body"></tbody>
+        </table>
+
+        <div id="historial-container"></div>
+    </div>
+        <footer id="footer"></footer>
+        
+        <script>
+            fetch("../partials/footer.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("footer").innerHTML = data;
+            });
+
+            fetch("http://localhost:5000/pacientes")
+                .then(res => res.json())
+                .then(pacientes => {
+                    const tbody = document.getElementById('tabla-body');
+                    const tabla = document.getElementById('tabla-pacientes');
+        
+                    if (pacientes.length > 0) {
+                        pacientes.forEach((p, index) => {
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                <td>${p.name}</td>
+                                <td>${p.age}</td>
+                                <td>${p.history[0].sex === 0 ? 'Hombre' : 'Mujer'}</td>
+                                <td>
+                                    <button class="botonHistorial" onclick="mostrarHistorial(${index})">Ver historial</button>
+                                    <button class="botonHistorial" onclick="mostrarFormularioDiagnostico(${index})">Nuevo diagnóstico</button>
+                                </td>
+                            `;
+                            tbody.appendChild(tr);
+                        });
+        
+                        tabla.classList.remove("no-mostrar");
+                        tabla.classList.add("fade-slide-in");
+                    }
+        
+                    window.pacientes = pacientes;
+                    console.log(pacientes); // Para depuración
+                });
+        </script>    
+        <script src="../js/script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<div class="form-container">
+    <h1>DATOS MÉDICOS</h1>
+    <form id="heartForm">
+        <div class="form-content">
+            <!-- Datos personales -->
+            <fieldset class="datos-personales">
+                <legend>Información personal</legend>
+                <div>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="name" required />
+    
+                    <label for="age">Edad:</label>
+                    <input type="number" id="age" name="age" required />
+    
+                    <label for="sex">Sexo:</label>
+                    <select id="sex" name="sex">
+                        <option value="0">Hombre</option>
+                        <option value="1">Mujer</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <!-- Datos médicos -->
+            <fieldset class="datos-medicos">
+                <legend>Antecedentes médicos</legend>
+                <div class="container-datos">
+                    <label for="cp">Chest Pain</label>
+                    <select id="cp" name="cp">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+    
+                    <label for="trestbps">Resting BP</label>
+                    <input type="number" id="trestbps" name="trestbps" required />
+    
+                    <label for="chol">Colesterol sérico (mg/dl):</label>
+                    <input type="number" id="chol" name="chol" required />
+                </div>
+    
+                <div class="container-datos">
+                    <label for="fbs">Azúcar en sangre en ayunas</label>
+                    <input type="number" id="fbs" min="0" max="1" name="fbs" required />
+    
+                    <label for="restecg">Resultados del ECG</label>
+                    <input type="number" id="restecg" name="restecg" required />
+    
+                    <label for="thalach">Frecuencia cardíaca máxima</label>
+                    <input type="number" id="thalach" name="thalach" required />
+                </div>
+    
+                <div class="container-datos">
+                    <label for="exang">Angina inducida por ejercicio</label>
+                    <input type="number" id="exang" min="0" max="1" name="exang" required />
+    
+                    <label for="oldpeak">Oldpeak</label>
+                    <input type="number" step="0.1" id="oldpeak" name="oldpeak" required />
+    
+                    <label for="slope">Pendiente del segmento ST</label>
+                    <input type="number" id="slope" name="slope" required />
+                </div>
+    
+                <div class="container-datos">
+                    <label for="ca">Vasos principales por fluoroscopía:</label>
+                    <input type="number" id="ca" min="0" max="3" name="ca" required />
+    
+                    <label for="thal">Talasemia</label>
+                    <input type="number" id="thal" min="0" max="2" name="thal" required />
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- Pie del formulario -->
+        <div class="form-bottom">
+            <input type="submit" value="Enviar datos" />
+        </div>
+    </form>
+</div>
