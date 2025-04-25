@@ -1,4 +1,4 @@
-document.getElementById('heartForm').addEventListener('submit', function(e) {
+document.getElementById('heartForm-Principal').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const form = e.target;

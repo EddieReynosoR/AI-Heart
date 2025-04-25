@@ -1,6 +1,6 @@
 <div class="form-container">
     <h1>DATOS MÉDICOS</h1>
-    <form id="heartForm">
+    <form id="heartForm-Principal" method="POST" action="/predict">
         <div class="form-content">
             <!-- Datos personales -->
             <fieldset class="datos-personales">
@@ -76,4 +76,8 @@
             <input type="submit" value="Enviar datos" />
         </div>
     </form>
+
+    <div id="result-container">
+        <p id="result"></p>
+    </div>
 </div>
