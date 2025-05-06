@@ -20,15 +20,22 @@ X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, 
 
 # Definir modelo
 model = tf.keras.Sequential([
-    tf.keras.layers.Dense(64, activation="relu", input_shape=(X_train.shape[1],)),
-    tf.keras.layers.Dense(32, activation="relu"),
+    tf.keras.layers.Dense(16, activation="relu", input_shape=(X_train.shape[1],),
+                          kernel_regularizer=tf.keras.regularizers.l2(0.01)),
+    tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(1, activation="sigmoid")
 ])
 
 model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
 
 # Entrenar modelo
-history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
+history = model.fit(
+    X_train, y_train,
+    epochs=500,
+    validation_data=(X_test, y_test),
+    batch_size=16,
+    verbose=1
+)
 
 # Guardar modelo
 model.save("heart_model.keras")
