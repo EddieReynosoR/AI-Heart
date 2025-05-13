@@ -1,0 +1,61 @@
+/*.gradient-background*/
+body {
+    background: linear-gradient(300deg, #000044, #002860);
+    background-size: 180% 180%;
+    animation: gradient-animation 10s ease infinite;
+    
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .main >div>img{
+    border-radius: 10%;
+  }
+  
+
+
+.carousel-inner {
+    height: 400px;
+
+}
+
+.carousel-item {
+ 
+    min-height: 100%; /* Evita que sea demasiado pequeño */
+    
+  }
+  
+  .btn-custom{
+    background-color: #002860;
+    border: 1px solid #002860;
+    color:#fff;
+    
+  }
+
+  .btn-custom:hover{
+    background-color: #63849e;
+  }
+.dropdown-item:hover{
+  background-color: #63849e;
+}
+
+.btnav{
+  font-size: 18px;
+  padding: 10px;
+  
+}
