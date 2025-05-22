@@ -19,7 +19,7 @@ X_scaled = scaler.fit_transform(X)
 joblib.dump(scaler, "scaler.pkl")  # Guardar escalador
 
 # Dividir en sets de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.3, random_state=42)
 
 weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
 class_weights = dict(enumerate(weights))
@@ -28,12 +28,15 @@ class_weights = dict(enumerate(weights))
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(64, activation="relu", input_shape=(X_train.shape[1],)),
     tf.keras.layers.BatchNormalization(),
+    tf.keras.layers.Dropout(0.3),
     
     tf.keras.layers.Dense(32, activation="relu"),
     tf.keras.layers.BatchNormalization(),
+    tf.keras.layers.Dropout(0.3),
     
     tf.keras.layers.Dense(16, activation="relu"),
     tf.keras.layers.BatchNormalization(),
+    tf.keras.layers.Dropout(0.3),
     
     tf.keras.layers.Dense(1, activation="sigmoid")
 ])
@@ -45,7 +48,7 @@ model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
 # Entrenar modelo
 history = model.fit(
     X_train, y_train,
-    epochs=150,
+    epochs=1500,
     validation_data=(X_test, y_test),
     batch_size=32,
     class_weight=class_weights,
